@@ -1,0 +1,22 @@
+{
+  "name": "steelcochem-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "start:dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "opcua-commander": "opcua-commander -e opc.tcp://10.0.80.125:4840 -u SteelcoData -p St33lc0d4t4",
+    "opcua-commander:help": "opcua-commander --help"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.0",
+    "node-opcua-client": "^2.132.0",
+    "nodemon": "^3.1.6",
+    "opcua-commander": "^0.39.0"
+  },
+  "type": "module"
+}

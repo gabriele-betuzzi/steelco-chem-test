@@ -1,22 +1,21 @@
-import { AttributeIds, MessageSecurityMode, OPCUAClient, SecurityPolicy, UserTokenType } from 'node-opcua-client';
-import express from 'express'
-import { getSteelcoChemData } from './src/steelco-chem.service.js'
+import express from "express";
+import { getSteelcoChemData } from "./src/steelco-chem.service.js";
 
-const app = express()
-const port = 3000
+const app = express();
+const port = 3000;
 
-app.get('/', (req, res) => {
-    res.status(200).send('Server OK!')
-})
+app.get("/", (req, res) => {
+  res.status(200).send("Server OK!");
+});
 
-app.get('/steelco-chem', async (req, res) => {
-    const data = await getSteelcoChemData()
-    res.status(200).json(data)
-})
+app.get("/steelco-chem", async (req, res) => {
+  const data = await getSteelcoChemData();
+  res.status(200).json(data);
+});
 
 app.listen(port, () => {
-    console.log('App is listening on port', port)
-})
+  console.log("App is listening on port", port);
+});
 
 /*
 (async async => {

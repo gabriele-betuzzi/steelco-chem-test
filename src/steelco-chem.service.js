@@ -22,16 +22,16 @@ export async function getSteelcoChemData() {
 
   const client = OPCUAClient.create(options);
 
-  const endpointUrl = "opc.tcp://10.0.80.125:4840";
+  const endpointUrl = process.env.STEELCO_CHEM_ENDPOINT;
   const steelcoChemRootNodeId = "ns=6;s=::SteelcoDat:steelcoData";
   const maxAge = 0; // https://reference.opcfoundation.org/Core/Part4/v104/docs/5.10.2 is this important?
 
-  await client.connect(endpointUrl);
+  await client.connect(endpointUrl || "");
   console.log("connected !");
 
   const session = await client.createSession({
-    userName: "SteelcoData",
-    password: "St33lc0d4t4",
+    userName: process.env.STEELCO_CHEM_USERNAME || "",
+    password: process.env.STEELCO_CHEM_PASSWORD || "",
     type: UserTokenType.UserName,
   });
   console.log("session created !");
@@ -44,14 +44,13 @@ export async function getSteelcoChemData() {
     maxAge
   );
 
-  console.log(
-    "pumpStationCount:",
-    readResult.value.value.configuration.pumpStationCount
-  );
+  //   console.log(
+  //     "pumpStationCount:",
+  //     readResult.value.value.configuration.pumpStationCount
+  //   );
 
   await client.disconnect();
   console.log("done !");
-  7;
 
   return readResult.value.value;
 }
